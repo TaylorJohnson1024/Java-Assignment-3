@@ -40,7 +40,7 @@ public class BinaryForm extends javax.swing.JFrame {
         btnBrowse = new javax.swing.JButton();
         btnConfirm = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        taOutput = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
         btnDisplay = new javax.swing.JButton();
 
@@ -105,14 +105,19 @@ public class BinaryForm extends javax.swing.JFrame {
                 .addGap(17, 17, 17))
         );
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        taOutput.setColumns(20);
+        taOutput.setRows(5);
+        jScrollPane1.setViewportView(taOutput);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Display Tree");
 
         btnDisplay.setText("Display");
+        btnDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDisplayActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -176,6 +181,11 @@ public class BinaryForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnConfirmActionPerformed
 
+    private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
+        tree.inOrder();
+        taOutput.setText(tree.getOutputString());
+    }//GEN-LAST:event_btnDisplayActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -211,6 +221,8 @@ public class BinaryForm extends javax.swing.JFrame {
         });
     }
 
+    // Custom variables declaration - do not modify
+    private BST tree = new BST();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBrowse;
     private javax.swing.JButton btnClose;
@@ -221,7 +233,7 @@ public class BinaryForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea taOutput;
     private javax.swing.JTextField tfFileName;
     // End of variables declaration//GEN-END:variables
 }
