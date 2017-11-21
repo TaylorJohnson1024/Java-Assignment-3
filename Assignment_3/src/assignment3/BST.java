@@ -12,10 +12,8 @@ package assignment3;
 public class BST {
     private BSTNode root;
     private int wordCountTotal = 0;
-    // watch for finalness
-    private int wordCountUnique = countNodes();
-    private String outputString = "NUMBER OF WORDS: " + wordCountTotal + 
-            "\nNUMBER OF UNIQUE WORDS: " + wordCountUnique + "\n";
+    private int wordCountUnique = 0;
+    private String outputString;
     
     /**
      * 
@@ -90,7 +88,17 @@ public class BST {
     /**
      * 
      */
+    public void constructOutput() {
+        wordCountUnique = countNodes();
+        outputString = "NUMBER OF WORDS: " + wordCountTotal + 
+            "\nNUMBER OF UNIQUE WORDS: " + wordCountUnique + "\n\n";
+    }
+    
+    /**
+     * 
+     */
     public void inOrder() {
+        constructOutput();
         inOrder(root);
     }
     
