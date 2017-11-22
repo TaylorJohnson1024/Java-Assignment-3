@@ -21,15 +21,7 @@ public class BST {
     public BST() {
         root = null;
     }
-    
-    /**
-     * 
-     * @return 
-     */
-    public boolean isEmpty() {
-        return root == null;
-    }
-    
+        
     /**
      * 
      * @param data 
@@ -45,18 +37,21 @@ public class BST {
      * @return 
      */
     private BSTNode insert(BSTNode node, String data) {
-        if (node == null)
+        if (node == null) {
             node = new BSTNode(data);
+            wordCountTotal += 1;
+        }
         else {
             if (data.compareToIgnoreCase(node.getData()) < 0)
                 node.left = insert(node.left, data);
-            else if (data.compareToIgnoreCase(node.getData()) < 0)
+            else if (data.compareToIgnoreCase(node.getData()) > 0)
                 node.right = insert(node.right, data);
-            else
+            else {
                 node.duplicates += 1;
+                wordCountTotal += 1;
+            }               
         }
         
-        wordCountTotal += 1;
         return node;
     }
     
