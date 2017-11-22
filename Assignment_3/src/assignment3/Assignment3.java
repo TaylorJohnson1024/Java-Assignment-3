@@ -3,7 +3,8 @@ package assignment3;
 import javax.swing.JDialog;
 
 /**
- *
+ * Main file.
+ * 
  * @author Taylor Johnson
  */
 public class Assignment3 {
@@ -17,7 +18,9 @@ public class Assignment3 {
         instantiateGUI();
     }
     
-    //instantiates the GUI
+    /**
+     * Instantiates GUI.
+     */
     private static void instantiateGUI() {
         myFrame = new BinaryForm();
         myFrame.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);

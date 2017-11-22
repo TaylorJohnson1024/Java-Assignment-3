@@ -15,7 +15,8 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 
 /**
- *
+ * General GUI for the project. 
+ * 
  * @author Taylor Johnson
  */
 public class BinaryForm extends javax.swing.JFrame {
@@ -170,13 +171,28 @@ public class BinaryForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Action connected to close button on GUI. 
+     * Closes program safely without error
+     * 
+     * @param evt 
+     */
     private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnCloseActionPerformed
 
+    /**
+     * Action connected to browse button on GUI.
+     * Opens a window to browse and select a file. 
+     * The text field is populated with the file path
+     * on completion
+     * 
+     * Code used from Neatbeans website on Swing Filechoosers
+     * https://netbeans.org/kb/docs/java/gui-filechooser.html
+     * 
+     * @param evt 
+     */
     private void btnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBrowseActionPerformed
-        // Code used from Neatbeans website on Swing Filechoosers
-        // https://netbeans.org/kb/docs/java/gui-filechooser.html
         int returnVal = fileChooser.showOpenDialog(this);
         
         if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -190,6 +206,19 @@ public class BinaryForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnBrowseActionPerformed
 
+    /**
+     * Action connected to confirm button on GUI. 
+     * Retrieves the content of a file and populates a string
+     * variable with the info retrieved.
+     * Data within variable is combed for commas and periods and
+     * replaced with nothing.
+     * Variable is then split into an array by the newline escape character 
+     * and spaces.
+     * Array is then looped over and each index is inserted in the binary tree.
+     * Label is updated to show that the file has been confirmed.
+     * 
+     * @param evt 
+     */
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         String contents = "";
         
@@ -198,10 +227,10 @@ public class BinaryForm extends javax.swing.JFrame {
             
         } 
         catch (IOException ex) {
-            Logger.getLogger(BinaryForm.class.getName()).log(Level.SEVERE, null, ex);
+            taOutput.setText("Problem accessing file " + tfFileName.getText());
         }
         
-        contents = contents.replaceAll("[,.]", "");
+        contents = contents.replaceAll("[0-9,.]", "");
         String[] contentsWords = contents.split("(\\n|\\s+)");
         
         for (String contentsWord : contentsWords) {
@@ -211,6 +240,13 @@ public class BinaryForm extends javax.swing.JFrame {
         lblConfirm.setText("File Confirmed. You may press display to see results.");
     }//GEN-LAST:event_btnConfirmActionPerformed
 
+    /**
+     * Action connected to display button on GUI. 
+     * Data from binary tree is displayed, in order, in the text area.
+     * Label is updated to show that additional files may be inputted.
+     * 
+     * @param evt 
+     */
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
         tree.inOrder();
         taOutput.setText(tree.getOutputString());
